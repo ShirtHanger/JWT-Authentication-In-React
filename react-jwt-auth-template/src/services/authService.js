@@ -14,8 +14,8 @@ async function signup(formData) {
             throw new Error(response.data.error)
         }
 
-        if (response.token) {
-            localStorage.setItem('token', json.token); // Stores the JWT token into the browser's localStorage
+        if (response.data.token) {
+            localStorage.setItem('token', response.data.token); // Stores the JWT token into the browser's localStorage
 
             const user = JSON.parse(atob(response.data.token.split('.')[1]))
             return user;
@@ -37,8 +37,8 @@ async function signin(user) {
         }
 
         /* Takes "Bearer" out of the token response */
-        if (response.token) {
-            localStorage.setItem('token', json.token); // Stores the JWT token into the browser's localStorage
+        if (response.data.token) {
+            localStorage.setItem('token', response.data.token); // Stores the JWT token into the browser's localStorage
 
             const user = JSON.parse(atob(response.data.token.split('.')[1]))
             return user;
@@ -53,6 +53,7 @@ async function signin(user) {
 
 /* Will check if the user has signed in on a previous session, if so, loads their profile no problem. If not, sets to null */
 function getUser() {
+
     const token = localStorage.getItem('token');
     if (!token) return null;
     const user = JSON.parse(atob(token.split('.')[1]));
