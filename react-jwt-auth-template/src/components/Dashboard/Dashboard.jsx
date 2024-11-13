@@ -2,6 +2,9 @@
 
 /* props isn't being used here, directly accessing user object */
 const Dashboard = ({ user }) => {
+
+  console.log(user)
+
     return (
       <main>
         <h1>Welcome, {user.username}</h1>

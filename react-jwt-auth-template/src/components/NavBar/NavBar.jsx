@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
-/* props isn't being used here, directly accessing user object */
-const NavBar = ({ user }) => {
+/* props isn't being used here, directly accessing user and signout object */
+const NavBar = ({ user, handleSignout }) => {
     return (
       <>
         <p>Twatter</p>
@@ -9,7 +9,7 @@ const NavBar = ({ user }) => {
             <nav>
                 <ul>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="">Sign Out</Link></li>
+                <li><Link to="" onClick={handleSignout}>Sign Out</Link></li>
                 </ul>
           </nav>
         ) : ( /* Renders if no user (User set to null or other falsey value) */
